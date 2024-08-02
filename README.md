@@ -1,2 +1,3 @@
-# poba-fe
-Pokemon Battle Challenge
+# Boilerplate react
+
+# docker build -t poba-fe .

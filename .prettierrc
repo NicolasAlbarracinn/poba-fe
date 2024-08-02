@@ -1,0 +1,30 @@
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "arrowParens": "avoid",
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "react$",
+    "^(react(.*)|redux|redux(.*)|connected(.*))$",
+    "<THIRD_PARTY_MODULES>",
+    "^(.*)/setup/(.*)$",
+    "^@material-ui/styles(.*)$",
+    "^@material-ui/core(.*)$",
+    "^@material-ui/icons(.*)$",
+    "^@material-ui/(.*)$",
+    "^(.*)/modules/(.*)$",
+    "^(.*)/services/(.*)$",
+    "^(.*)/reducers/(.*)$",
+    "^(.*)/components(.*)$",
+    "^(.*)/assets/(.*)$",
+    "^(.*)/utils/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSortSpecifiers": true,
+  "importOrderGroupNamespaceSpecifiers": true,
+  "importOrderCaseInsensitive": true
+}
