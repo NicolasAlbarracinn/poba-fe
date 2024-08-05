@@ -1,7 +1,6 @@
-import React from 'react';
 import { Box, Typography } from '@mui/material';
 import placeholderImage from 'assets/placeholder_image.png';
-import { PokemonCard } from 'pages/AddCard/types';
+import { PokemonCard } from 'interfaces/cards';
 
 interface CardPrevieProps {
   data: PokemonCard;
@@ -9,7 +8,7 @@ interface CardPrevieProps {
 
 export const CardPreview = ({ data }: CardPrevieProps) => {
   return (
-    <>
+    <Box>
       <Box
         component="img"
         src={data.image}
@@ -26,6 +25,7 @@ export const CardPreview = ({ data }: CardPrevieProps) => {
       <Box>
         <Typography variant="subtitle2">Hp: {data.hp}</Typography>
         <Typography variant="subtitle2">Attack: {data.attack}</Typography>
+        <Typography variant="subtitle2">Type: {data.type}</Typography>
         {data.resist !== '' && (
           <Typography variant="subtitle2">Resistance: {data.resist}</Typography>
         )}
@@ -33,6 +33,6 @@ export const CardPreview = ({ data }: CardPrevieProps) => {
           <Typography variant="subtitle2">Weakness: {data.weak}</Typography>
         )}
       </Box>
-    </>
+    </Box>
   );
 };

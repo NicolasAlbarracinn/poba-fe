@@ -5,9 +5,11 @@ import { Box } from '@mui/material';
 import ConfirmationDialog from 'components/ConfirmationDialog';
 import Loader from 'components/Loader';
 import { Pagination } from 'components/Pagination';
-import { PokemonCardWithActions } from 'components/PokemonCardWithActions';
-import StyledPageBox from 'components/StyledPageBox';
-import StyledPagePaper from 'components/StyledPagePaper';
+import StyledPageBox from 'components/styled/StyledPageBox';
+import StyledPagePaper from 'components/styled/StyledPagePaper';
+import { CardBattle } from 'pages/CardBattle/CardBattle';
+import { PokemonCardDefault } from 'utils/constants';
+import { PokemonCardWithActions } from './components/PokemonCardWithActions';
 import { SearchBar } from './components/SearchBar';
 import { useCardsListSlice } from './store';
 import {
@@ -40,6 +42,9 @@ const CardList = () => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [type, setType] = useState('');
   const [page, setPage] = useState(1);
+  const [cardToBattle, setCardToBattle] = useState(PokemonCardDefault);
+  const [cardToBattleAgainst, setCardToBattleAgainst] =
+    useState(PokemonCardDefault);
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
   const [cardForDelete, setCardForDeleteId] = useState<string>('');
   const [cardsPerPage, setCardsPerPage] = useState(10);
@@ -124,34 +129,47 @@ const CardList = () => {
           {isLoading ? (
             <Loader />
           ) : (
-            <Box
-              sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'center',
-                gap: 2,
-              }}
-            >
-              {cards.map(card => (
-                <PokemonCardWithActions
-                  key={card.id}
-                  card={card}
-                  handleEditCard={handleEditCard}
-                  setDeleteModalOpen={setDeleteModalOpen}
-                  setCardForDeleteId={setCardForDeleteId}
-                />
-              ))}
-              <ConfirmationDialog
-                message="Are you sure you want to delete the card?"
-                open={deleteModalOpen}
-                onConfirm={() => {
-                  handleDeleteCard(cardForDelete);
-                  setDeleteModalOpen(false);
-                }}
-                onClose={() => setDeleteModalOpen(false)}
+            <>
+              <CardBattle
+                cardToBattle={cardToBattle}
+                setCardToBattle={setCardToBattle}
+                cardToBattleAgainst={cardToBattleAgainst}
+                setCardToBattleAgainst={setCardToBattleAgainst}
               />
-            </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  justifyContent: 'center',
+                  gap: 2,
+                }}
+              >
+                {cards.map(card => (
+                  <PokemonCardWithActions
+                    key={card.id}
+                    card={card}
+                    handleEditCard={handleEditCard}
+                    setDeleteModalOpen={setDeleteModalOpen}
+                    setCardForDeleteId={setCardForDeleteId}
+                    cardToBattle={cardToBattle}
+                    setCardToBattle={setCardToBattle}
+                    cardToBattleAgainst={cardToBattleAgainst}
+                    setCardToBattleAgainst={setCardToBattleAgainst}
+                  />
+                ))}
+                <ConfirmationDialog
+                  message="Are you sure you want to delete the card?"
+                  open={deleteModalOpen}
+                  onConfirm={() => {
+                    handleDeleteCard(cardForDelete);
+                    setDeleteModalOpen(false);
+                  }}
+                  onClose={() => setDeleteModalOpen(false)}
+                />
+              </Box>
+            </>
           )}
+
           <Pagination
             page={page}
             totalPages={totalPages}

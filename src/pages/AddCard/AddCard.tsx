@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CardForm } from 'components/CardForm';
-import StyledPageBox from 'components/StyledPageBox';
-import StyledPagePaper from 'components/StyledPagePaper';
+import StyledPageBox from 'components/styled/StyledPageBox';
+import StyledPagePaper from 'components/styled/StyledPagePaper';
 import useValidateForm from 'hooks/useValidateForm';
+import { PokemonCard } from 'interfaces/cards';
 import { selectIsLoading } from 'pages/Login/store/selectors';
-import { initialCardForm } from 'utils/constants';
+import { PokemonCardDefault } from 'utils/constants';
 import { useCreateCardSlice } from './store';
-import { PokemonCard } from './types';
 
 const AddCard = () => {
   const isLoading = useSelector(selectIsLoading);
   const { actions } = useCreateCardSlice();
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState<PokemonCard>(initialCardForm);
+  const [formData, setFormData] = useState<PokemonCard>(PokemonCardDefault);
   const { errors, validateForm } = useValidateForm();
 
   const handleChange = (name: string, value: string | number) => {

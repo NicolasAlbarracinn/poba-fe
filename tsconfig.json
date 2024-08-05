@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "noImplicitAny": false,
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -16,9 +16,10 @@
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "types": ["vitest/globals"]
   },
-  "include": ["src", "internals/startingTemplate/**/*"],
+  "include": ["src", "internals/startingTemplate/**/*", "setupTest.ts"],
   "ts-node": {
     "compilerOptions": {
       "esModuleInterop": true,

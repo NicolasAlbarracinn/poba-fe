@@ -1,7 +1,8 @@
 import { call, debounce, put, takeLatest } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toastMessage } from 'components/ToastMessage';
+import { ToastType } from 'utils/constants';
 import {
   GET_CARDS,
   GET_CARDS_EXPANSIONS,
@@ -38,7 +39,10 @@ export function* getCards(action: PayloadAction<GetCardsRequest>) {
       requestOptions,
     );
     yield put(actions.getCardsSuccess(response.data));
-  } catch (err) {
+  } catch (err: unknown) {
+    if (err instanceof AxiosError) {
+      toastMessage(err?.response?.data.message, ToastType.ERROR);
+    }
     yield put(actions.getCardsFailed());
   }
 }
@@ -104,7 +108,10 @@ export function* removeCard(action: PayloadAction<string>) {
     yield call(axios, requestURL, requestOptions);
     toastMessage('Card deleted succesfully');
     yield put(actions.removeCardSuccess());
-  } catch (err) {
+  } catch (err: unknown) {
+    if (err instanceof AxiosError) {
+      toastMessage(err?.response?.data.message, ToastType.ERROR);
+    }
     yield put(actions.removeCardFailed());
   }
 }

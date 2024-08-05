@@ -13,8 +13,8 @@ import {
   Typography,
 } from '@mui/material';
 import { Errors } from 'hooks/useValidateForm';
+import { PokemonCard } from 'interfaces/cards';
 import { pokemonTypes } from 'mocks/pokemonData';
-import { PokemonCard } from '../pages/AddCard/types';
 import { CardPreview } from './CardPreview';
 import { GoBackButton } from './GoBackButton';
 
@@ -70,6 +70,7 @@ export const CardForm = (props: IAddCardFormProps) => {
                   required
                   label="Name"
                   name="name"
+                  id="name"
                   value={formData.name}
                   onChange={handleTextFieldChange}
                   size="small"
@@ -83,6 +84,7 @@ export const CardForm = (props: IAddCardFormProps) => {
                   required
                   label="Expansion"
                   name="expansion"
+                  id="expansion"
                   value={formData.expansion}
                   onChange={handleTextFieldChange}
                   size="small"
@@ -96,6 +98,7 @@ export const CardForm = (props: IAddCardFormProps) => {
                   required
                   label="Card code"
                   name="cardCode"
+                  id="cardCode"
                   value={formData.cardCode}
                   onChange={handleTextFieldChange}
                   size="small"
@@ -109,6 +112,7 @@ export const CardForm = (props: IAddCardFormProps) => {
                   required
                   label="Image URL"
                   name="image"
+                  id="image"
                   value={formData.image}
                   onChange={handleTextFieldChange}
                   size="small"
@@ -122,6 +126,7 @@ export const CardForm = (props: IAddCardFormProps) => {
                   required
                   label="HP"
                   name="hp"
+                  id="hp"
                   type="number"
                   value={formData.hp}
                   onChange={handleTextFieldChange}
@@ -136,6 +141,7 @@ export const CardForm = (props: IAddCardFormProps) => {
                   required
                   label="Attack"
                   name="attack"
+                  id="attack"
                   type="number"
                   value={formData.attack}
                   onChange={handleTextFieldChange}
@@ -146,9 +152,11 @@ export const CardForm = (props: IAddCardFormProps) => {
               </Grid>
               <Grid item xs={12}>
                 <FormControl size="small" fullWidth error={!!errors.type}>
-                  <InputLabel>Type *</InputLabel>
+                  <InputLabel id="type-label">Type *</InputLabel>
                   <Select
                     name="type"
+                    labelId="type-label"
+                    id="type"
                     label="Type"
                     value={formData.type}
                     onChange={handleSelectChange}
@@ -167,9 +175,11 @@ export const CardForm = (props: IAddCardFormProps) => {
               </Grid>
               <Grid item xs={6}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel>Resistance</InputLabel>
+                  <InputLabel id="resist-label">Resistance</InputLabel>
                   <Select
                     name="resist"
+                    labelId="resist-label"
+                    id="resist"
                     label="Resistance"
                     value={formData.resist}
                     onChange={handleSelectChange}
@@ -185,9 +195,11 @@ export const CardForm = (props: IAddCardFormProps) => {
               </Grid>
               <Grid item xs={6}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel>Weakness</InputLabel>
+                  <InputLabel id="weak-label">Weakness</InputLabel>
                   <Select
                     name="weak"
+                    labelId="weak-label"
+                    id="weak"
                     label="Weakness"
                     value={formData.weak}
                     onChange={handleSelectChange}
@@ -208,9 +220,9 @@ export const CardForm = (props: IAddCardFormProps) => {
                   fullWidth
                   type="submit"
                   size="small"
+                  disabled={submitDisable}
                 >
                   {submitLabel || 'Add Card'}
-                  disabled={submitDisable}
                 </Button>
               </Grid>
             </Grid>

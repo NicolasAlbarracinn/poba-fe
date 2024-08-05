@@ -1,6 +1,6 @@
-import { PokemonCard } from 'pages/AddCard/types';
+import { PokemonCard } from 'interfaces/cards';
 
-export const initialCardForm: PokemonCard = {
+export const PokemonCardDefault: PokemonCard = {
   cardCode: '',
   expansion: '',
   name: '',
@@ -10,6 +10,7 @@ export const initialCardForm: PokemonCard = {
   type: '',
   resist: '',
   weak: '',
+  id: '',
 };
 
 export enum ToastType {

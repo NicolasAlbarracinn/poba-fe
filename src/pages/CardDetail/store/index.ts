@@ -1,14 +1,14 @@
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PokemonCard } from 'pages/AddCard/types';
-import { initialCardForm } from 'utils/constants';
+import { PokemonCard } from 'interfaces/cards';
+import { PokemonCardDefault } from 'utils/constants';
 import { cardDetailSaga } from './saga';
 import { CardDetailState } from './types';
 
 export const initialState: CardDetailState = {
   loadingCard: false,
   loadingCardUpdate: false,
-  cardDetails: initialCardForm,
+  cardDetails: PokemonCardDefault,
 };
 
 const cardDetailSlice = createSlice({

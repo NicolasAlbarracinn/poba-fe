@@ -1,4 +1,3 @@
-import React from 'react';
 import { Autocomplete as MuiAutocomplete, TextField } from '@mui/material';
 
 // Could be a generic type for reause

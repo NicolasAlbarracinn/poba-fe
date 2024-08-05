@@ -1,6 +1,6 @@
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PokemonCard } from 'pages/AddCard/types';
+import { PokemonCard } from 'interfaces/cards';
 import { createCardSaga } from './saga';
 import { AddCardState } from './types';
 

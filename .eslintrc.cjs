@@ -8,6 +8,14 @@ module.exports = {
       jsx: true,
     },
   },
+  globals: {
+    describe: 'readonly',
+    it: 'readonly',
+    expect: 'readonly',
+    beforeEach: 'readonly',
+    afterEach: 'readonly',
+    // add other globals as needed
+  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -33,6 +41,7 @@ module.exports = {
     'max-len': [
       'warn',
       {
+        ignorePattern: '^import\\s.+\\sfrom\\s.+;$|^it\\(',
         code: 80,
         ignoreUrls: true,
         ignoreComments: true,

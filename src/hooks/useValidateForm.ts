@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PokemonCard } from 'pages/AddCard/types';
+import { PokemonCard } from 'interfaces/cards';
 
 export interface Errors {
   name?: string;

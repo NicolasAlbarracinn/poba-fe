@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { CardForm } from 'components/CardForm';
 import Loader from 'components/Loader';
-import StyledPageBox from 'components/StyledPageBox';
-import StyledPagePaper from 'components/StyledPagePaper';
+import StyledPageBox from 'components/styled/StyledPageBox';
+import StyledPagePaper from 'components/styled/StyledPagePaper';
 import useValidateForm from 'hooks/useValidateForm';
+import { PokemonCard } from 'interfaces/cards';
 import { isEmpty } from 'lodash-es';
-import { PokemonCard } from 'pages/AddCard/types';
 import { useCardDetailSlice } from './store';
 import {
   selectCardDetails,
