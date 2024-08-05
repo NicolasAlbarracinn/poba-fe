@@ -1,9 +1,6 @@
-/*import { all, fork } from 'redux-saga/effects';
+import { all, fork } from 'redux-saga/effects';
+import { appSaga } from 'containers/App/appSaga';
 
-// Root saga combines all individual sagas
 export function* rootSaga() {
-  yield all([
-    fork(authSaga),
-  ]);
-}*/
-// In case i need some saga to run on the start
+  yield all([fork(appSaga)]);
+}

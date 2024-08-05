@@ -21,7 +21,6 @@ export const customTheme = {
     },
   },
   components: {
-    // Apply global CSS overrides
     MuiCssBaseline: {
       styleOverrides: {
         html: {

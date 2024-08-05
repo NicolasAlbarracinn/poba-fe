@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Box } from '@mui/material';
 import bgImage from 'assets/pokemon-background.jpg';
-import { AppBar } from 'containers/AppBar/AppBar';
+import AppBar from 'containers/AppBar/AppBar';
 import PrivateRoute from 'containers/PrivateRoutes/PrivateRoutes';
 import AddCard from 'pages/AddCard/AddCard';
 import CardDetail from 'pages/CardDetail/CardDetail';
@@ -15,7 +15,7 @@ const App = () => {
       <AppBar />
       <Box
         style={{
-          backgroundImage: `url(${bgImage})`, // Use URL string here
+          backgroundImage: `url(${bgImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'top center',
         }}

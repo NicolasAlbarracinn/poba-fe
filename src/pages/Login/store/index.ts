@@ -1,11 +1,10 @@
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GetLoginRequest } from '../types';
 import { loginSaga } from './saga';
-import { LoginState } from './types';
+import { GetLoginRequest, LoginState } from './types';
 
 export const initialState: LoginState = {
-  loading: false,
+  loginLoading: false,
 };
 
 const logincSlice = createSlice({
@@ -13,13 +12,13 @@ const logincSlice = createSlice({
   initialState,
   reducers: {
     getLoginRequest(state, _action: PayloadAction<GetLoginRequest>) {
-      state.loading = true;
+      state.loginLoading = true;
     },
     getLoginSuccess(state) {
-      state.loading = false;
+      state.loginLoading = false;
     },
     getLoginFailed(state) {
-      state.loading = false;
+      state.loginLoading = false;
     },
   },
 });

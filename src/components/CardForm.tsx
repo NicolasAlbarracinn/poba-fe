@@ -18,8 +18,6 @@ import { PokemonCard } from '../pages/AddCard/types';
 import { CardPreview } from './CardPreview';
 import { GoBackButton } from './GoBackButton';
 
-// Import GoBackButton
-
 interface IAddCardFormProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   handleChange: (name: string, value: string | number) => void;

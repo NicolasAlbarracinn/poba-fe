@@ -1,11 +1,13 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toastMessage } from 'components/ToastMessage';
 import { appActions } from 'containers/App/appSlice';
-import { GetLoginRequest } from 'pages/Login/types';
 import { persistor } from 'store/configureStore';
+import { ToastType } from 'utils/constants';
 import { GET_USER_LOGIN } from 'utils/endpoints';
 import { actions } from '.';
+import { GetLoginRequest } from './types';
 
 export function* getLoginRequest(action: PayloadAction<GetLoginRequest>) {
   const requestURL = `${GET_USER_LOGIN}`;
@@ -25,6 +27,7 @@ export function* getLoginRequest(action: PayloadAction<GetLoginRequest>) {
     yield put(appActions.setUser(response.data.user));
     persistor.flush();
   } catch (err) {
+    toastMessage('Oops! Something went wrong', ToastType.ERROR);
     yield put(actions.getLoginFailed());
   }
 }

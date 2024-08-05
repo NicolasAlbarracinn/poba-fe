@@ -5,5 +5,5 @@ import { initialState } from '.';
 const selectLogin = (state: RootState) => state.login || initialState;
 export const selectIsLoading = createSelector(
   [selectLogin],
-  login => login.loading,
+  login => login.loginLoading,
 );

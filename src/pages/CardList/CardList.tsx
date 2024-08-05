@@ -33,7 +33,7 @@ const CardList = () => {
   const expansions = useSelector(selectExpansions);
   const isLoading = useSelector(selectIsLoadingCards);
   const refetch = useSelector(selectRefetch);
-  const searchOptions = useSelector(selectSearchOptions) as CardOption[]; // Ensure correct typing
+  const searchOptions = useSelector(selectSearchOptions) as CardOption[];
   const { actions } = useCardsListSlice();
   const [searchName, setSearchName] = useState('');
   const [expansion, setExpansion] = useState('');

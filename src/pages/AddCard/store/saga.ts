@@ -1,10 +1,10 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toastMessage } from 'components/ToastMessage';
 import { PokemonCard } from 'pages/AddCard/types';
 import { CREATE_CARD } from 'utils/endpoints';
 import { actions } from '.';
-import { toastMessage } from 'components/ToastMessage';
 
 export function* createCardRequest(action: PayloadAction<PokemonCard>) {
   const requestURL = `${CREATE_CARD}`;

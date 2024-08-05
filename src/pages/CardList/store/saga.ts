@@ -1,6 +1,7 @@
 import { call, debounce, put, takeLatest } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
+import { toastMessage } from 'components/ToastMessage';
 import {
   GET_CARDS,
   GET_CARDS_EXPANSIONS,
@@ -13,7 +14,6 @@ import {
   GetCardsRequest,
   SearchOptions,
 } from './types';
-import { toastMessage } from 'components/ToastMessage';
 
 export function* getCards(action: PayloadAction<GetCardsRequest>) {
   const requestURL = `${GET_CARDS}`;

@@ -8,5 +8,5 @@ export interface User {
 
 export interface AppState {
   googleToken: string;
-  user: User | {};
+  user: User | null;
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CardForm } from 'components/CardForm';
-import Loader from 'components/Loader';
 import StyledPageBox from 'components/StyledPageBox';
 import StyledPagePaper from 'components/StyledPagePaper';
 import useValidateForm from 'hooks/useValidateForm';

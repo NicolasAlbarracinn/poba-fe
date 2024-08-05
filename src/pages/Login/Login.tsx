@@ -6,14 +6,16 @@ import { GoogleLogin } from '@react-oauth/google';
 import { appActions } from 'containers/App/appSlice';
 import { selectAppUser } from 'containers/App/selectors';
 import { isEmpty } from 'lodash-es';
+import { boxStyles, cardContentStyles, cardStyles } from './LoginStyles';
 import { useLoginSlice } from './store';
+import { GetLoginRequest } from './store/types';
 
 const Login = () => {
   const { actions } = useLoginSlice();
   const isLogged = useSelector(selectAppUser);
   const dispatch = useDispatch();
 
-  const handleLoginSuccess = response => {
+  const handleLoginSuccess = (response: GetLoginRequest) => {
     dispatch(actions.getLoginRequest({ credential: response.credential }));
     dispatch(appActions.setToken(response.credential));
   };
@@ -25,19 +27,9 @@ const Login = () => {
   }
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      height="100vh"
-    >
-      <Card
-        sx={{
-          height: '300px',
-          width: '250px',
-        }}
-      >
-        <CardContent>
+    <Box sx={boxStyles}>
+      <Card sx={cardStyles}>
+        <CardContent sx={cardContentStyles}>
           <Typography variant="h5" component="h2" gutterBottom>
             Welcome
           </Typography>

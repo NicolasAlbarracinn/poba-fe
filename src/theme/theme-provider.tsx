@@ -5,12 +5,10 @@ import {
 } from '@mui/material/styles';
 import { customTheme } from './theme';
 
-// Define the props type
 type ThemeProviderProps = {
   children: ReactNode;
 };
 
-// Convert to const component
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const theme = useMemo(() => extendTheme(customTheme), []);
 

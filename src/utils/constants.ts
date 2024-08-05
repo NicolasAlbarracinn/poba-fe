@@ -11,3 +11,10 @@ export const initialCardForm: PokemonCard = {
   resist: '',
   weak: '',
 };
+
+export enum ToastType {
+  SUCCESS = 'success',
+  ERROR = 'error',
+  INFO = 'info',
+  WARN = 'warn',
+}

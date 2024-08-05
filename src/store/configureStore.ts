@@ -13,15 +13,14 @@ import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import { configureStore, StoreEnhancer } from '@reduxjs/toolkit';
 import { createReducer } from './rootReducer';
+import { rootSaga } from './rootSaga';
 
-// Define the persist config for the auth reducer
 const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['app'],
 };
 
-// Create a persisted reducer
 const persistedReducer = injectedReducers => {
   return persistReducer(persistConfig, createReducer(injectedReducers));
 };
@@ -31,7 +30,6 @@ function configureAppStore() {
   const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
   const { run: runSaga } = sagaMiddleware;
 
-  // Create the store with saga middleware
   const middlewares = [sagaMiddleware];
 
   const enhancers = [
@@ -42,7 +40,7 @@ function configureAppStore() {
   ] as StoreEnhancer[];
 
   const store = configureStore({
-    reducer: persistedReducer({}), // Initially pass an empty object
+    reducer: persistedReducer({}),
     middleware: defaultMiddleware =>
       defaultMiddleware({
         serializableCheck: {
@@ -55,7 +53,7 @@ function configureAppStore() {
 
   const persistor = persistStore(store);
 
-  //sagaMiddleware.run(rootSaga); In case i need some saga to run on the start
+  sagaMiddleware.run(rootSaga);
 
   return { store, persistor };
 }

@@ -1,3 +1,7 @@
 export interface LoginState {
-  loading: boolean;
+  loginLoading: boolean;
 }
+
+export type GetLoginRequest = {
+  credential: string;
+};
