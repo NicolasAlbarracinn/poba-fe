@@ -6,6 +6,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: 'rgba(128, 128, 128, 0.7)',
   maxWidth: 1200,
   width: '80%',
+  minHeight: '481px',
 }));
 
 export default StyledPaper;

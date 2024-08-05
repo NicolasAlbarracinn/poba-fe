@@ -13,7 +13,10 @@ export const initialState: CardListState = {
   cardExpansions: [],
   searchOptions: [],
   total: 0,
-  loading: false,
+  loadingCards: false,
+  loadingExpansions: false,
+  loadingCardRemove: false,
+  refetch: false,
 };
 
 const cardsListSlice = createSlice({
@@ -21,34 +24,43 @@ const cardsListSlice = createSlice({
   initialState,
   reducers: {
     getCardsRequest(state, _action: PayloadAction<GetCardsRequest>) {
-      state.loading = true;
+      state.loadingCards = true;
+      state.refetch = false;
     },
     getCardsSuccess(state, action: PayloadAction<CardResponse>) {
       state.cards = action.payload.cards;
       state.total = action.payload.total;
+      state.loadingCards = false;
     },
     getCardsFailed(state) {
-      state.loading = false;
+      state.loadingCards = false;
     },
     getCardsExpansionsRequest(state) {
-      state.loading = true;
+      state.loadingExpansions = true;
     },
-    getCardsExpansionsSuccess(state, action: PayloadAction<any>) {
-      state.loading = false;
+    getCardsExpansionsSuccess(state, action: PayloadAction<string[]>) {
+      state.loadingExpansions = false;
       state.cardExpansions = action.payload;
     },
     getCardsExpansionsFailed(state) {
-      state.loading = false;
+      state.loadingExpansions = false;
     },
-    getSearchOptionsRequest(state, _action: PayloadAction<string>) {
-      state.loading = true;
-    },
+    getSearchOptionsRequest(_state, _action: PayloadAction<string>) {},
     getSearchOptionsSuccess(state, action: PayloadAction<SearchOptions[]>) {
-      state.loading = false;
       state.searchOptions = action.payload;
     },
     getSearchOptionsFailed(state) {
-      state.loading = false;
+      state.loadingCardRemove = false;
+    },
+    removeCardRequest(state, _action: PayloadAction<string>) {
+      state.loadingCardRemove = true;
+    },
+    removeCardSuccess(state) {
+      state.loadingCardRemove = false;
+      state.refetch = true;
+    },
+    removeCardFailed(state) {
+      state.loadingCardRemove = false;
     },
   },
 });

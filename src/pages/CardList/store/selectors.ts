@@ -20,3 +20,13 @@ export const selectSearchOptions = createSelector(
   [selectCardsList],
   cardList => cardList.searchOptions,
 );
+
+export const selectIsLoadingCards = createSelector(
+  [selectCardsList],
+  cardList => cardList.loadingCards,
+);
+
+export const selectRefetch = createSelector(
+  [selectCardsList],
+  cardList => cardList.refetch,
+);

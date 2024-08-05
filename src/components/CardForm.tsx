@@ -12,18 +12,34 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { Errors } from 'hooks/useValidateForm';
 import { pokemonTypes } from 'mocks/pokemonData';
-import { Errors, PokemonCard } from '../types';
+import { PokemonCard } from '../pages/AddCard/types';
+import { CardPreview } from './CardPreview';
+import { GoBackButton } from './GoBackButton';
+
+// Import GoBackButton
 
 interface IAddCardFormProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   handleChange: (name: string, value: string | number) => void;
   formData: PokemonCard;
   errors: Errors;
+  formTitle: string;
+  submitLabel?: string;
+  submitDisable?: boolean;
 }
 
-export const AddCardForm = (props: IAddCardFormProps) => {
-  const { handleSubmit, handleChange, formData, errors } = props;
+export const CardForm = (props: IAddCardFormProps) => {
+  const {
+    handleSubmit,
+    handleChange,
+    formData,
+    errors,
+    formTitle,
+    submitLabel,
+    submitDisable = false,
+  } = props;
 
   const handleTextFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
@@ -37,25 +53,16 @@ export const AddCardForm = (props: IAddCardFormProps) => {
 
   return (
     <>
-      <Box display="flex" justifyContent="center">
+      <Box display="flex" justifyContent="center" position="relative">
         <Typography variant="h4" gutterBottom>
-          Add Card
+          {formTitle}
         </Typography>
+        <GoBackButton />
       </Box>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid item sm={6} xs={12} sx={{ textAlign: 'center' }}>
-            <Box
-              component="img"
-              src={formData.image}
-              alt="Card Preview"
-              sx={{
-                width: 245,
-                height: 342,
-                objectFit: 'cover',
-                marginTop: 2,
-              }}
-            />
+            <CardPreview data={formData} />
           </Grid>
           <Grid item sm={6} xs={12}>
             <Grid container spacing={2}>
@@ -204,7 +211,8 @@ export const AddCardForm = (props: IAddCardFormProps) => {
                   type="submit"
                   size="small"
                 >
-                  Add Card
+                  {submitLabel || 'Add Card'}
+                  disabled={submitDisable}
                 </Button>
               </Grid>
             </Grid>

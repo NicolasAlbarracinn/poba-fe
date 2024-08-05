@@ -5,10 +5,9 @@ import bgImage from 'assets/pokemon-background.jpg';
 import { AppBar } from 'containers/AppBar/AppBar';
 import PrivateRoute from 'containers/PrivateRoutes/PrivateRoutes';
 import AddCard from 'pages/AddCard/AddCard';
+import CardDetail from 'pages/CardDetail/CardDetail';
 import CardList from 'pages/CardList/CardList';
 import Login from 'pages/Login/Login';
-
-// Adjust path if necessary
 
 const App = () => {
   return (
@@ -16,11 +15,9 @@ const App = () => {
       <AppBar />
       <Box
         style={{
-          height: '100vh',
           backgroundImage: `url(${bgImage})`, // Use URL string here
           backgroundSize: 'cover',
           backgroundPosition: 'top center',
-          backgroundRepeat: 'no-repeat',
         }}
       >
         <Routes>
@@ -28,6 +25,7 @@ const App = () => {
           <Route element={<PrivateRoute />}>
             <Route path="add-card" element={<AddCard />} />
             <Route path="card-list" element={<CardList />} />
+            <Route path="card-detail/:id" element={<CardDetail />} />
           </Route>
         </Routes>
       </Box>

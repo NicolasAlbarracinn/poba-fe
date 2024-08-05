@@ -15,7 +15,7 @@ const addCardslice = createSlice({
     createCardRequest(state, _action: PayloadAction<PokemonCard>) {
       state.loading = true;
     },
-    createCardSuccess(state, _action: PayloadAction<PokemonCard>) {
+    createCardSuccess(state) {
       state.loading = false;
     },
     createCardFailed(state) {

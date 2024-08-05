@@ -1,5 +1,8 @@
 export interface CardListState extends CardResponse {
-  loading: boolean;
+  loadingCards: boolean;
+  loadingExpansions: boolean;
+  loadingCardRemove: boolean;
+  refetch: boolean;
 }
 
 export interface CardResponse {
@@ -24,6 +27,7 @@ export interface GetCardsRequest {
   amount: number;
   type: string;
   expansion: string;
+  cardId: string | null;
 }
 
 export interface Card {

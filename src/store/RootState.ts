@@ -1,5 +1,6 @@
 import { AppState } from 'containers/App/types';
 import { AddCardState } from 'pages/AddCard/store/types';
+import { CardDetailState } from 'pages/CardDetail/store/types';
 import { CardListState } from 'pages/CardList/store/types';
 import { LoginState } from 'pages/Login/store/types';
 
@@ -14,4 +15,5 @@ export interface RootState {
   addCard?: AddCardState;
   app?: AppState;
   cardList?: CardListState;
+  cardDetail?: CardDetailState;
 }

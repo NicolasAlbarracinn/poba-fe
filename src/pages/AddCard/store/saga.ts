@@ -1,23 +1,25 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
 import { PokemonCard } from 'pages/AddCard/types';
 import { CREATE_CARD } from 'utils/endpoints';
-import { request } from 'utils/request';
 import { actions } from '.';
+import { toastMessage } from 'components/ToastMessage';
 
 export function* createCardRequest(action: PayloadAction<PokemonCard>) {
   const requestURL = `${CREATE_CARD}`;
   try {
-    const requestOptions: RequestInit = {
+    const requestOptions = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      credentials: 'include',
-      body: JSON.stringify(action.payload),
+      withCredentials: true,
+      data: JSON.stringify(action.payload),
     };
-    const response = yield call(request, requestURL, requestOptions);
-    yield put(actions.createCardSuccess(response.user));
+    yield call(axios, requestURL, requestOptions);
+    yield put(actions.createCardSuccess());
+    toastMessage('Card added succesfully');
   } catch (err) {
     yield put(actions.createCardFailed());
   }

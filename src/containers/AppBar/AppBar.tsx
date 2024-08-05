@@ -13,8 +13,8 @@ import { boxStyles, buttonStyles, toolbarStyles } from './AppBarStyles';
 export const AppBar = () => {
   const navigate = useNavigate();
 
-  const handleAddCardClick = () => {
-    navigate('/add-card');
+  const handleGoToPath = (url: string) => {
+    navigate(url);
   };
 
   return (
@@ -22,8 +22,14 @@ export const AppBar = () => {
       <Toolbar sx={toolbarStyles}>
         <Box sx={boxStyles}>
           <Typography variant="h6">Pokemon Battler</Typography>
-          <Button onClick={handleAddCardClick} sx={buttonStyles}>
+          <Button onClick={() => handleGoToPath('/add-card')} sx={buttonStyles}>
             Add Card
+          </Button>
+          <Button
+            onClick={() => handleGoToPath('/card-list')}
+            sx={buttonStyles}
+          >
+            Card List
           </Button>
         </Box>
         <ThemeSwitchButton />

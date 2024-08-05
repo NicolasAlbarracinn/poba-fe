@@ -5,7 +5,7 @@ import { Box, Card, CardContent, Typography } from '@mui/material';
 import { GoogleLogin } from '@react-oauth/google';
 import { appActions } from 'containers/App/appSlice';
 import { selectAppUser } from 'containers/App/selectors';
-import { isEmpty } from 'lodash';
+import { isEmpty } from 'lodash-es';
 import { useLoginSlice } from './store';
 
 const Login = () => {

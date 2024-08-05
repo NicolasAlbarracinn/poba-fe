@@ -13,8 +13,9 @@ import {
   GetCardsRequest,
   SearchOptions,
 } from './types';
+import { toastMessage } from 'components/ToastMessage';
 
-export function* getCardsRequest(action: PayloadAction<GetCardsRequest>) {
+export function* getCards(action: PayloadAction<GetCardsRequest>) {
   const requestURL = `${GET_CARDS}`;
   try {
     const requestOptions = {
@@ -28,9 +29,9 @@ export function* getCardsRequest(action: PayloadAction<GetCardsRequest>) {
         amount: action.payload.amount,
         type: action.payload.type,
         expansion: action.payload.expansion,
+        cardId: action.payload.cardId,
       },
     };
-
     const response: AxiosResponse<CardResponse> = yield call(
       axios,
       requestURL,
@@ -41,7 +42,7 @@ export function* getCardsRequest(action: PayloadAction<GetCardsRequest>) {
     yield put(actions.getCardsFailed());
   }
 }
-export function* getCardsExpansionsRequest() {
+export function* getCardsExpansions() {
   const requestURL = `${GET_CARDS_EXPANSIONS}`;
   try {
     const requestOptions = {
@@ -52,7 +53,7 @@ export function* getCardsExpansionsRequest() {
       withCredentials: true,
     };
 
-    const response: AxiosResponse<CardResponse> = yield call(
+    const response: AxiosResponse<string[]> = yield call(
       axios,
       requestURL,
       requestOptions,
@@ -89,11 +90,28 @@ export function* getSearchOptions(
   }
 }
 
+export function* removeCard(action: PayloadAction<string>) {
+  const requestURL = `${GET_CARDS}/${action.payload}`;
+  try {
+    const requestOptions = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true,
+    };
+
+    yield call(axios, requestURL, requestOptions);
+    toastMessage('Card deleted succesfully');
+    yield put(actions.removeCardSuccess());
+  } catch (err) {
+    yield put(actions.removeCardFailed());
+  }
+}
+
 export function* getCardsSaga() {
-  yield takeLatest(
-    actions.getCardsExpansionsRequest.type,
-    getCardsExpansionsRequest,
-  );
-  yield takeLatest(actions.getCardsRequest.type, getCardsRequest);
+  yield takeLatest(actions.getCardsExpansionsRequest.type, getCardsExpansions);
+  yield takeLatest(actions.getCardsRequest.type, getCards);
+  yield takeLatest(actions.removeCardRequest.type, removeCard);
   yield debounce(1000, actions.getSearchOptionsRequest.type, getSearchOptions);
 }

@@ -22,7 +22,7 @@ const persistConfig = {
 };
 
 // Create a persisted reducer
-const persistedReducer = (injectedReducers: any) => {
+const persistedReducer = injectedReducers => {
   return persistReducer(persistConfig, createReducer(injectedReducers));
 };
 
@@ -36,8 +36,7 @@ function configureAppStore() {
 
   const enhancers = [
     createInjectorsEnhancer({
-      createReducer: (injectedReducers: any) =>
-        persistedReducer(injectedReducers),
+      createReducer: injectedReducers => persistedReducer(injectedReducers),
       runSaga,
     }),
   ] as StoreEnhancer[];
